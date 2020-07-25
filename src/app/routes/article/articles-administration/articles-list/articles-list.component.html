@@ -1,0 +1,83 @@
+<nz-card>
+    <nz-tabset>
+        <nz-tab nzTitle="全部文章">
+            <div style="display: inline-flex;">
+                <app-artcile-serach (onSerach)="onSerach($event)" [serachResult]="serachResult"></app-artcile-serach>
+                <button nz-button nzType="primary"><i nz-icon nzType="search"></i>搜索</button>
+                <button nz-button nzType="primary"><i nz-icon nzType="delete"></i>删除全部</button>
+            </div>
+            <br>
+            <nz-table [nzNoResult]="' '" [nzData]="temArry" #tableData [nzBordered]="true">
+                <thead>
+                    <tr>
+                        <th> <label nz-checkbox [(ngModel)]="checked"></label></th>
+                        <th nzAlign="center">标题</th>
+                        <th nzAlign="center">最近编辑时间</th>
+                        <th nzAlign="center">作者</th>
+                        <th nzAlign="center">所属分类</th>
+                        <th nzAlign="center">分类</th>
+                        <th nzAlign="center">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let item of tableData.data">
+                        <td><label nz-checkbox [(ngModel)]="checked1"></label></td>
+                        <td nzAlign="center">{{item.title}}</td>
+                        <td nzAlign="center">{{item.value2}}</td>
+                        <td nzAlign="center">{{item.value3}}</td>
+                        <td nzAlign="center">{{item.value4}}</td>
+                        <td nzAlign="center">{{item.value2}}</td>
+                        <td nzAlign="center"> <button nz-button nzType="primary">编辑</button><button nz-button
+                                nzType="primary" nzDanger>删除</button></td>
+                    </tr>
+                </tbody>
+            </nz-table>
+            <ng-template #nzprefix>
+                <i nz-icon nzType="search"></i>
+            </ng-template>
+        </nz-tab>
+        <nz-tab nzTitle="已发表">
+            <!-- <app-article-model>
+                <nz-carousel nzAutoPlay nzEffect="fade">
+
+                </nz-carousel>
+            </app-article-model> -->
+        </nz-tab>
+        <nz-tab nzTitle="出入库记录">
+            <nz-table [nzBordered]="true">
+                <thead>
+                    <tr>
+                        <th nzAlign="center">序号</th>
+                        <th nzAlign="center">商品名称</th>
+                        <th nzAlign="center">单位</th>
+                        <th nzAlign="center">入库数量</th>
+                        <th nzAlign="center">入库单价</th>
+                        <th nzAlign="center">入库金额</th>
+                        <th nzAlign="center">数据备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </nz-tab>
+        <nz-tab nzTitle="回收站">
+
+        </nz-tab>
+        <nz-tab nzTitle="博客管理">
+
+        </nz-tab>
+        <nz-tab nzTitle="博客配置">
+
+        </nz-tab>
+    </nz-tabset>
+</nz-card>

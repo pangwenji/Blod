@@ -1,0 +1,78 @@
+在项目数据全局状态管理上，在react框架使用的是Redux;
+  Redux是为了解决应用程序状态（State）管理而提出的一种解决方案。从单项数据流方面说，redux中将整个状态都集中在一个JavaScript对象树中。然后通过数据变更也就是通知，而将组件变更动作储存在store 仓库中。等到使用
+  时候 使用this.store.dispacth分发
+
+  通过下面在项目使用ngrx：
+
+  首先创建 store文件夹中，再创建actions reducers  selectors 三个文件
+
+    1, 在reducer  初始化state 状态，和值
+            export enum ModalType {
+    Register = "register",
+    LoginByPhone = "loginByPhone",
+    Share = 'share',
+    Like = 'like',
+    Default = 'default'
+}
+
+//初始化State类型
+export interface MemberState {
+    modalVisible: boolean;
+    modalType: ModalType
+}
+
+//初始化State的值
+export const initialState: MemberState = {
+    modalVisible: false,
+    modalType: ModalType.Default
+}
+//注册到Reducer
+
+const reducer = createReducer(
+    initialState,
+    on(SetModalVisible, (state, { modalVisible }) => ({ ...state, modalVisible })),
+    on(SetModalType, (state, { modalType }) => ({ ...state, modalType })),
+)
+
+export function memberReducer(state: MemberState, action: Action) {
+    return reducer(state, action);
+}
+
+第二步：在action 创建需要变更动作文件ts
+export const SetModalVisible = createAction('[member] Set modal visible', props<{ modalVisible: boolean }>());
+export const SetModalType = createAction('[member] Set moddal visible', props<{ modalType: ModalType }>());
+
+
+第三步：在selected文件创建分发文件
+
+
+const selectMemberStates = (state: MemberState) => state;
+export const getModalVisible = createReducer(selectMemberStates, (state: MemberState) => state.modalVisible);
+export const getModalType = createReducer(selectMemberStates, (state: MemberState) => state.modalType)
+
+第四步 在store文件下创建appStoreModule
+ 
+ @NgModule({
+  declarations: [],
+  imports: [
+    StoreModule.forRoot({ player: playerReducer, member: memberReducer }, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: true,
+      }
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 20,
+      logOnly: environment.production
+    })
+  ]
+})
+export class AppStoreModule { }
+
+第五步 ：在使用的模块中注册进来，或者是公共核心模块中引用；
+第六步：在service.ts文件构造器初始化
+constructor(private store$: Store<AppStoreModule>) {
+    
+  }

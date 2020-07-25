@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "Alain",
+    "description": "Ng-zorro admin panel front-end framework"
+  },
+  "user": {
+    "name": "主頁",
+    "avatar": "./assets/tmp/img/avatar.jpg",
+    "email": "799953277@qq.com"
+  },
+  "menu": [
+    {
+      "text": "主导航",
+      "i18n": "menu.main",
+      "group": true,
+      "hideInBreadcrumb": true,  
+      "children": [
+        {
+          "text": "文章管理",
+          "i18n": "menu.article.articles-administration",
+          "icon": "anticon-dashboard",
+          "children": [
+            {
+              "text": "文章列表",
+              "link": "/articles-administration/articles-list",
+              "i18n": "menu.article.articles-administration.articles-list"
+            },
+            {
+              "text": "发表文章",
+              "link": "/articles-administration/articles-publish",
+              "i18n": "menu.article.articles-administration.articles-publish"
+            }
+         
+          ]
+        },
+        {
+          "text": "用户管理",
+          "i18n": "menu.article.articles-usermanage",
+          "icon": "anticon-dashboard",
+          "link": "/articles-usermanage"
+        },
+        {
+          "text": "栏目管理",
+          "i18n": "menu.article.articles-project-management",
+          "icon": "anticon-dashboard",
+          "link": "/articles-project-management"
+        },
+        {
+          "text": "数据统计",
+          "i18n": "menu.article.arcticle-data-statistics",
+          "icon": "anticon-dashboard",
+          "children":[
+            {
+              "text": "折线图",  
+              "link": "/arcticle-data-statistics/linechart",
+              "i18n": "menu.article.arcticle-data-statistics.linechart"
+            },
+            {
+              "text": "柱状图",  
+              "link": "/arcticle-data-statistics/histogram",
+              "i18n": "menu.article.arcticle-data-statistics.histogram"
+            },
+            {
+              "text": "饼状图",
+              "link": "/arcticle-data-statistics/piechart",
+              "i18n": "menu.article.arcticle-data-statistics.piechart"
+            },
+            {
+              "text": "面积状图",
+              "link": "/arcticle-data-statistics/areamap",
+              "i18n": "menu.article.arcticle-data-statistics.areamap"
+            },
+            {
+              "text": "条形图",
+              "link": "/arcticle-data-statistics/barchart",
+              "i18n": "menu.article.arcticle-data-statistics.barchart"
+            }
+                 
+          ]
+        }
+    
+
+      ]
+    }
+  ]
+}
